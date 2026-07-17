@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aangrudy.dev"), // ganti dengan domain nanti
+  metadataBase: new URL("https://portfolio-aangrudy.vercel.app"),
   title: {
     default: "Aang Rudy | Full Stack Developer",
     template: "%s | Aang Rudy",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       "Portfolio Aang Rudy - Full Stack Developer yang membangun aplikasi modern menggunakan Laravel, React, Next.js, dan teknologi web modern.",
     type: "website",
     locale: "id_ID",
-    url: "https://aangrudy.dev",
+    url: "https://portfolio-aangrudy.vercel.app",
     siteName: "Aang Rudy Portfolio",
     images: [
       {
