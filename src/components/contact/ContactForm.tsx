@@ -75,27 +75,43 @@ export default function ContactForm() {
     setStatus("loading");
 
     try {
-      const response = await fetch("/api/contact", {
+      const formData = new FormData();
+
+      formData.append(
+        "access_key",
+        process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
+      );
+
+      formData.append("redirect", "https://aangrudy.my.id");
+
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("subject", form.subject);
+      formData.append("message", form.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: formData,
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to send");
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("success");
+
+        setForm({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        throw new Error(result.message);
       }
-
-      setStatus("success");
-
-      setForm({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-
-      setTimeout(() => setStatus("idle"), 3000);
-    } catch {
+    } catch (err) {
+      console.error(err);
       setStatus("error");
     }
   };

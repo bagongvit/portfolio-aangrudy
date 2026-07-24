@@ -19,9 +19,9 @@ export default function AboutContent() {
 
       <div className="mt-8 space-y-5 text-lg leading-8 text-zinc-400">
         <p>
-          I am <span className="font-medium text-white">Aang Rudy</span>, a Full
-          Stack Developer who enjoys creating modern web applications with great
-          user experience and solid architecture.
+          I am baru<span className="font-medium text-white">Aang Rudy</span>, a
+          Full Stack Developer who enjoys creating modern web applications with
+          great user experience and solid architecture.
         </p>
 
         <p>
