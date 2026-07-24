@@ -4,6 +4,8 @@ import "./globals.css";
 
 import CustomCursor from "@/components/ui/CustomCursor";
 import PageLoader from "@/components/ui/PageLoader";
+import AuroraBackground from "@/components/ui/AuroraBackground";
+import SmoothScrollProvider from "@/components/hero/SmoothScrollProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,14 +82,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="id"
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth`}
-    >
+    <html lang="id" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-screen bg-[#09090B] text-white antialiased">
         <PageLoader />
         <CustomCursor />
-        {children}
+        <AuroraBackground />
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );

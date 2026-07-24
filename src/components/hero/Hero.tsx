@@ -3,6 +3,7 @@ import HeroButtons from "./HeroButtons";
 import HeroContent from "./HeroContent";
 import HeroImage from "./HeroImage";
 import HeroSocial from "./HeroSocial";
+import HeroScene from "./HeroScene";
 import ScrollIndicator from "./ScrollIndicator";
 import HeroSpotlight from "./HeroSpotlight";
 
@@ -14,6 +15,7 @@ export default function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
+        <HeroScene />
         <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-[120px]" />
         <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-violet-600/10 blur-[120px]" />
         <div className="absolute -left-20 top-1/3 h-[300px] w-[300px] rounded-full bg-cyan-500/5 blur-[100px]" />

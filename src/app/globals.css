@@ -37,7 +37,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -49,6 +49,48 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes aurora-move {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.88;
+  }
+
+  25% {
+    transform: translate3d(18px, -10px, 0) scale(1.04);
+    opacity: 0.92;
+  }
+
+  50% {
+    transform: translate3d(-16px, 12px, 0) scale(1.06);
+    opacity: 0.98;
+  }
+
+  75% {
+    transform: translate3d(10px, 14px, 0) scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+.animate-aurora-move {
+  animation: aurora-move 22s ease-in-out infinite;
+}
+
+@keyframes tech-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-tech-float {
+  animation: tech-float 6s ease-in-out infinite;
 }
 
 /* ================================
@@ -207,4 +249,24 @@ a {
 
 .animate-mesh {
   animation: mesh-float 12s ease-in-out infinite;
+}
+
+/* ================================
+   AURORA MOVE ANIMATION
+================================ */
+@keyframes aurora-move {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+  66% {
+    transform: translate(-20px, 25px) scale(0.95);
+  }
+}
+
+.animate-aurora-move {
+  animation: aurora-move linear infinite;
 }
