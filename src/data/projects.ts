@@ -20,7 +20,7 @@ export const projectData: Project[] = [
       "Platform marketplace untuk transaksi grosir dengan sistem multi-vendor.",
     longDescription:
       "Ayokulakan adalah platform marketplace B2B yang menghubungkan pembeli grosir dengan supplier. Saya bertanggung jawab membangun sistem backend untuk manajemen produk, transaksi multi-vendor, dan integrasi payment gateway, sekaligus frontend yang responsif untuk pengalaman belanja yang mulus di berbagai perangkat.",
-    image: "/images/projects/project2-1.png",
+    image: "/images/projects/ayokulakan-cover.png",
     screenshots: [
       "/images/projects/ayokulakan-1.png",
       "/images/projects/ayokulakan-2.png",
@@ -37,7 +37,7 @@ export const projectData: Project[] = [
       "Tantangan terbesar adalah mengoptimalkan query database saat traffic tinggi, khususnya di halaman listing produk yang menggabungkan data dari banyak vendor sekaligus. Solusinya dengan indexing yang tepat dan caching di layer aplikasi.",
     role: "Full Stack Developer",
     year: "2025",
-    github: "https://github.com/username/ayokulakan",
+    github: "https://github.com/bagongvit/ayokulakan",
     demo: "https://ayokulakan.example.com",
   },
   {

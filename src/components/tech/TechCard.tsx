@@ -183,7 +183,10 @@ group-hover:text-cyan-300
                   className="
 mt-4
 inline-flex
+max-w-full
 items-center
+truncate
+whitespace-nowrap
 rounded-full
 border
 border-white/10
@@ -192,10 +195,11 @@ px-3
 py-1
 text-xs
 uppercase
-tracking-[0.25em]
+tracking-[0.2em]
 text-cyan-200
 shadow-sm
 "
+                  title={category}
                 >
                   {category}
                 </p>

@@ -5,6 +5,7 @@ import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
 import PageLoader from "@/components/ui/PageLoader";
 import AuroraBackground from "@/components/ui/AuroraBackground";
+import Noise from "@/components/ui/Noise";
 import SmoothScrollProvider from "@/components/hero/SmoothScrollProvider";
 
 const geistSans = Geist({
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-aangrudy.vercel.app"),
+  metadataBase: new URL("https://aangrudy.my.id"),
   title: {
     default: "Aang Rudy | Full Stack Developer",
     template: "%s | Aang Rudy",
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
       "Portfolio Aang Rudy - Full Stack Developer yang membangun aplikasi modern menggunakan Laravel, React, Next.js, dan teknologi web modern.",
     type: "website",
     locale: "id_ID",
-    url: "https://portfolio-aangrudy.vercel.app",
+    url: "https://aangrudy.my.id",
     siteName: "Aang Rudy Portfolio",
     images: [
       {
@@ -82,11 +83,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
-      <body className="min-h-screen bg-[#09090B] text-white antialiased">
+    <html
+      lang="id"
+      className={`${geistSans.variable} ${geistMono.variable} h-full`}
+    >
+      <body
+        className="min-h-screen bg-[#09090B] text-white antialiased"
+        suppressHydrationWarning
+      >
         <PageLoader />
         <CustomCursor />
         <AuroraBackground />
+        <Noise />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

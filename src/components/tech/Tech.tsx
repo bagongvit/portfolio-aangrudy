@@ -1,6 +1,6 @@
 import Container from "@/components/layout/Container";
-import AuroraBackground from "@/components/ui/AuroraBackground";
 import FloatingTechIcons from "@/components/ui/FloatingTechIcons";
+import Glow from "@/components/ui/Glow";
 import { techData } from "@/data/tech";
 import TechCard from "./TechCard";
 import TechMarquee from "./TechMarquee";
@@ -12,14 +12,16 @@ export default function Tech() {
       aria-labelledby="tech-heading"
       className="relative overflow-hidden py-28 scroll-mt-24"
     >
-      {/* Background */}
-      <AuroraBackground />
+      {/* Background accent — ringan, menggantikan AuroraBackground yang
+          sebelumnya dobel-render (sudah global di layout.tsx) */}
+      <Glow color="cyan" size="lg" className="-left-20 -top-20" />
+      <Glow color="violet" size="md" className="-right-10 bottom-0" />
 
       {/* Floating Icons */}
       <FloatingTechIcons />
 
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center ">
           {/* Badge */}
           <div className="inline-flex items-center gap-3 rounded-full border border-blue-500/20 bg-blue-500/5 px-5 py-2 backdrop-blur-md">
             <div className="h-2 w-2 animate-pulse rounded-full bg-blue-400 shadow-[0_0_15px_rgb(96_165_250)]" />

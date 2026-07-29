@@ -1,7 +1,9 @@
 import { techData } from "@/data/tech";
 
+const REPEAT_COUNT = 4;
+
 export default function TechMarquee() {
-  const items = [...techData, ...techData]; // duplicate for seamless loop
+  const items = Array.from({ length: REPEAT_COUNT }, () => techData).flat();
 
   return (
     <div
@@ -9,8 +11,16 @@ export default function TechMarquee() {
       aria-label="Scrolling list of technologies"
     >
       <ul
-        className="flex w-max animate-[marquee_36s_linear_infinite] motion-reduce:animate-none gap-4 will-change-transform"
+        className="flex w-max gap-4 will-change-transform motion-reduce:animate-none"
         role="list"
+        style={
+          {
+            animation: "marquee-loop 36s linear infinite",
+            // translateX menuju -(100 / REPEAT_COUNT)% — 1 set penuh, bukan
+            // setengah total, karena sekarang ada 4 set yang di-render
+            "--marquee-distance": `-${100 / REPEAT_COUNT}%`,
+          } as React.CSSProperties
+        }
       >
         {items.map((tech, i) => (
           <li
