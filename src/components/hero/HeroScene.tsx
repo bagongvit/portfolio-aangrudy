@@ -11,8 +11,8 @@ import {
   SiReact,
   SiTypescript,
   SiNodedotjs,
-  type IconType,
 } from "react-icons/si";
+import type { IconType } from "react-icons";
 
 interface TechConfig {
   label: string;
