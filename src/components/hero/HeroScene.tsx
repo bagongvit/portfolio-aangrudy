@@ -4,6 +4,15 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Line, Html, Environment, Sphere } from "@react-three/drei";
 import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
+import {
+  SiLaravel,
+  SiVuedotjs,
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiNodedotjs,
+  type IconType,
+} from "react-icons/si";
 
 interface TechConfig {
   label: string;
@@ -11,21 +20,68 @@ interface TechConfig {
   angle: number;
   radius: number;
   bobOffset: number;
+  icon: IconType;
+  // Jenis gerakan — tiap tech dikasih pola beda supaya orbit terasa lebih
+  // hidup, tidak seragam naik-turun semua
+  animType?: "bob" | "diagonal" | "pulse" | "wide-orbit";
 }
 
 const TECH_STACK: TechConfig[] = [
-  { label: "Laravel", color: "#f87171", angle: -90, radius: 1.9, bobOffset: 0 },
-  { label: "Vue.js", color: "#4ade80", angle: -30, radius: 1.9, bobOffset: 1 },
-  { label: "Next.js", color: "#e5e7eb", angle: 30, radius: 1.9, bobOffset: 2 },
-  { label: "React", color: "#38bdf8", angle: 90, radius: 1.9, bobOffset: 3 },
+  {
+    label: "Laravel",
+    color: "#f87171",
+    angle: -90,
+    radius: 1.9,
+    bobOffset: 0,
+    icon: SiLaravel,
+    animType: "pulse",
+  },
+  {
+    label: "Vue.js",
+    color: "#4ade80",
+    angle: -30,
+    radius: 1.9,
+    bobOffset: 1,
+    icon: SiVuedotjs,
+    animType: "diagonal",
+  },
+  {
+    label: "Next.js",
+    color: "#e5e7eb",
+    angle: 30,
+    radius: 1.9,
+    bobOffset: 2,
+    icon: SiNextdotjs,
+    animType: "bob",
+  },
+  {
+    label: "React",
+    color: "#38bdf8",
+    angle: 90,
+    radius: 1.9,
+    bobOffset: 3,
+    icon: SiReact,
+    // Logo React (atom) — dikasih lintasan orbit mini di sekitar posisinya
+    animType: "wide-orbit",
+  },
   {
     label: "TypeScript",
     color: "#60a5fa",
     angle: 150,
     radius: 1.9,
     bobOffset: 4,
+    icon: SiTypescript,
+    animType: "diagonal",
   },
-  { label: "Node.js", color: "#86efac", angle: 210, radius: 1.9, bobOffset: 5 },
+  {
+    label: "Node.js",
+    color: "#86efac",
+    angle: 210,
+    radius: 1.9,
+    bobOffset: 5,
+    icon: SiNodedotjs,
+    animType: "pulse",
+  },
 ];
 
 function DataPulse({ config }: { config: TechConfig }) {
@@ -59,7 +115,8 @@ function DataPulse({ config }: { config: TechConfig }) {
 }
 
 function TechSatellite({ config }: { config: TechConfig }) {
-  const ref = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null);
+  const dotGroupRef = useRef<THREE.Group>(null);
   const basePosition = useMemo(() => {
     const rad = (config.angle * Math.PI) / 180;
     return {
@@ -69,27 +126,58 @@ function TechSatellite({ config }: { config: TechConfig }) {
   }, [config.angle, config.radius]);
 
   useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const bob =
-      Math.sin(clock.getElapsedTime() * 0.8 + config.bobOffset) * 0.08;
-    ref.current.position.x = basePosition.x;
-    ref.current.position.y = basePosition.y + bob;
-    ref.current.position.z = 0;
+    if (!groupRef.current) return;
+    const t = clock.getElapsedTime();
+    const phase = t + config.bobOffset;
+    const type = config.animType ?? "bob";
+
+    let offsetX = 0;
+    let offsetY = 0;
+    let scale = 1;
+
+    switch (type) {
+      case "diagonal":
+        offsetX = Math.sin(phase * 0.6) * 0.1;
+        offsetY = Math.cos(phase * 0.5) * 0.1;
+        break;
+      case "wide-orbit":
+        offsetX = Math.cos(phase * 0.5) * 0.16;
+        offsetY = Math.sin(phase * 0.5) * 0.16;
+        break;
+      case "pulse":
+        offsetY = Math.sin(phase * 0.8) * 0.06;
+        scale = 1 + Math.sin(phase * 1.3) * 0.18;
+        break;
+      case "bob":
+      default:
+        offsetY = Math.sin(phase * 0.8) * 0.08;
+        break;
+    }
+
+    groupRef.current.position.x = basePosition.x + offsetX;
+    groupRef.current.position.y = basePosition.y + offsetY;
+    groupRef.current.position.z = 0;
+
+    if (dotGroupRef.current) {
+      dotGroupRef.current.scale.set(scale, scale, scale);
+    }
   });
 
   return (
-    <group ref={ref}>
-      <Sphere args={[0.08, 16, 16]}>
-        <meshStandardMaterial
-          color={config.color}
-          emissive={config.color}
-          emissiveIntensity={1.4}
-        />
-      </Sphere>
-      <mesh>
-        <sphereGeometry args={[0.16, 16, 16]} />
-        <meshBasicMaterial color={config.color} transparent opacity={0.15} />
-      </mesh>
+    <group ref={groupRef}>
+      <group ref={dotGroupRef}>
+        <Sphere args={[0.08, 16, 16]}>
+          <meshStandardMaterial
+            color={config.color}
+            emissive={config.color}
+            emissiveIntensity={1.4}
+          />
+        </Sphere>
+        <mesh>
+          <sphereGeometry args={[0.16, 16, 16]} />
+          <meshBasicMaterial color={config.color} transparent opacity={0.15} />
+        </mesh>
+      </group>
 
       <Html
         center
@@ -107,10 +195,7 @@ function TechSatellite({ config }: { config: TechConfig }) {
             boxShadow: `0 0 18px ${config.color}30, inset 0 0 12px ${config.color}10`,
           }}
         >
-          <span
-            className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full"
-            style={{ backgroundColor: config.color }}
-          />
+          <config.icon size={14} color={config.color} className="shrink-0" />
           <span className="text-[11px] font-medium text-white/95">
             {config.label}
           </span>
@@ -254,8 +339,6 @@ function NetworkScene() {
   });
 
   return (
-    // PERBAIKAN: position={[0, 0.45, 0]} menggeser seluruh scene (orbit + garis + partikel)
-    // naik ke atas sebesar 0.45 unit. Naikkan angka ini kalau ingin lebih ke atas lagi.
     <group ref={groupRef} position={[0, 0.45, 0]}>
       <AmbientParticles />
       <DecorativeRing radius={1.9} speed={0.02} />

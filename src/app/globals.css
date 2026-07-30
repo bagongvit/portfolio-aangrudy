@@ -51,32 +51,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes aurora-move {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.88;
-  }
-
-  25% {
-    transform: translate3d(18px, -10px, 0) scale(1.04);
-    opacity: 0.92;
-  }
-
-  50% {
-    transform: translate3d(-16px, 12px, 0) scale(1.06);
-    opacity: 0.98;
-  }
-
-  75% {
-    transform: translate3d(10px, 14px, 0) scale(1.03);
-    opacity: 0.9;
-  }
-}
-
-.animate-aurora-move {
-  animation: aurora-move 22s ease-in-out infinite;
-}
+/* ================================
+   TECH ICON FLOAT — variasi dasar
+================================ */
 
 @keyframes tech-float {
   0%,
@@ -91,6 +68,105 @@ body {
 
 .animate-tech-float {
   animation: tech-float 6s ease-in-out infinite;
+}
+
+/* ================================
+   VARIASI ANIMASI PER-LOGO
+   (dipakai di FloatingTechIcons — tiap tech punya gerakan
+   berbeda supaya tidak terasa seragam/robotic)
+================================ */
+
+/* Rotasi pelan menerus — cocok untuk logo simetris seperti React (atom) */
+@keyframes tech-rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-tech-rotate-slow {
+  animation: tech-rotate-slow 14s linear infinite;
+}
+
+/* Drift diagonal — bergerak miring naik-turun */
+@keyframes tech-float-diagonal {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(12px, -14px);
+  }
+}
+.animate-tech-float-diagonal {
+  animation: tech-float-diagonal 8s ease-in-out infinite;
+}
+
+/* Bernapas/pulse — membesar-mengecil halus */
+@keyframes tech-pulse-scale {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+.animate-tech-pulse {
+  animation: tech-pulse-scale 5s ease-in-out infinite;
+}
+
+/* Drift horizontal — bergerak kiri-kanan */
+@keyframes tech-float-x {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(16px);
+  }
+}
+.animate-tech-float-x {
+  animation: tech-float-x 7s ease-in-out infinite;
+}
+
+/* Orbit kecil — mengikuti lintasan melingkar mini */
+@keyframes tech-orbit {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -10px);
+  }
+  50% {
+    transform: translate(0, -16px);
+  }
+  75% {
+    transform: translate(-10px, -10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.animate-tech-orbit {
+  animation: tech-orbit 9s ease-in-out infinite;
+}
+
+/* Bob + sedikit rotasi bolak-balik — kombinasi naik-turun & miring */
+@keyframes tech-float-rotate {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(8deg);
+  }
+}
+.animate-tech-float-rotate {
+  animation: tech-float-rotate 7s ease-in-out infinite;
 }
 
 /* ================================
