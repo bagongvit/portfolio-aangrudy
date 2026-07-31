@@ -71,7 +71,7 @@ export default function ProjectCard({
             <button
               onClick={onOpenDetail}
               className="relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900 text-left"
-              aria-label={`Lihat detail ${title}`}
+              aria-label={`View details for ${title}`}
             >
               <Image
                 src={image}
@@ -86,7 +86,7 @@ export default function ProjectCard({
               <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/0 opacity-0 backdrop-blur-0 transition-all duration-300 group-hover:bg-zinc-950/50 group-hover:opacity-100 group-hover:backdrop-blur-[2px]">
                 <span className="flex translate-y-2 items-center gap-2 rounded-full border border-white/20 bg-zinc-950/70 px-4 py-2 text-xs font-medium tracking-wide text-white shadow-lg backdrop-blur transition-transform duration-300 group-hover:translate-y-0">
                   <Maximize2 size={13} />
-                  Lihat Detail
+                  View Details
                 </span>
               </div>
 
@@ -103,7 +103,7 @@ export default function ProjectCard({
                 <Link
                   href={github}
                   target="_blank"
-                  aria-label="Lihat kode di GitHub"
+                  aria-label="View code on GitHub"
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-zinc-950/80 text-white backdrop-blur transition-colors hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-400"
                 >
                   <FaGithub size={15} />
@@ -111,7 +111,7 @@ export default function ProjectCard({
                 <Link
                   href={demo}
                   target="_blank"
-                  aria-label="Lihat demo langsung"
+                  aria-label="View live demo"
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-zinc-950/80 text-white backdrop-blur transition-colors hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-400"
                 >
                   <ExternalLink size={15} />
@@ -156,7 +156,7 @@ export default function ProjectCard({
                   >
                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
                     <Maximize2 size={16} />
-                    Detail
+                    Details
                   </button>
 
                   <Link
@@ -165,7 +165,7 @@ export default function ProjectCard({
                     className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:border-blue-500/50 hover:bg-white/5 active:scale-[0.98]"
                   >
                     <FaGithub size={16} />
-                    Kode
+                    Code
                   </Link>
                 </div>
               </div>

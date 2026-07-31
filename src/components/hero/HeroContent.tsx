@@ -13,14 +13,14 @@ export default function HeroContent() {
         <AnimatedText
           text={profile.name}
           delay={1.6}
-          className="bg-gradient-to-r from-white via-white to-zinc-400 bg-clip-text text-transparent"
+          className="bg-gradient-to-r from-white via-blue-100 to-cyan-300 bg-clip-text text-transparent drop-shadow-sm"
         />
       </h1>
-      <h2 className="mt-5 flex items-center gap-3 text-2xl font-semibold text-zinc-300 md:text-3xl">
-        <span className="h-px w-8 bg-gradient-to-r from-blue-500 to-transparent md:w-12" />
+      <h2 className="mt-5 flex items-center gap-3 text-2xl font-semibold text-blue-300 md:text-3xl">
+        <span className="h-0.5 w-8 rounded-full bg-gradient-to-r from-blue-500 via-violet-500 to-transparent md:w-12" />
         {profile.role}
       </h2>
-      <p className="mt-8 max-w-xl text-balance leading-8 text-zinc-400 md:text-lg">
+      <p className="mt-8 max-w-xl text-balance leading-8 text-zinc-300 md:text-lg">
         {profile.description}
       </p>
     </MotionWrapper>

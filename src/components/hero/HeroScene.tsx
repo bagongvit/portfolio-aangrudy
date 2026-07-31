@@ -181,22 +181,20 @@ function TechSatellite({ config }: { config: TechConfig }) {
 
       <Html
         center
-        distanceFactor={9}
         occlude={false}
         style={{ pointerEvents: "none" }}
-        transform
         sprite
       >
         <div
-          className="flex items-center gap-1.5 whitespace-nowrap rounded-lg border px-2.5 py-1.5 backdrop-blur-md shadow-lg transition-all"
+          className="flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/10 px-3 py-1.5 backdrop-blur-md shadow-lg transition-all duration-300"
           style={{
             backgroundColor: "rgba(15, 23, 42, 0.85)",
             borderColor: `${config.color}55`,
-            boxShadow: `0 0 18px ${config.color}30, inset 0 0 12px ${config.color}10`,
+            boxShadow: `0 0 16px ${config.color}30, inset 0 0 8px ${config.color}10`,
           }}
         >
-          <config.icon size={14} color={config.color} className="shrink-0" />
-          <span className="text-[11px] font-medium text-white/95">
+          <config.icon size={15} color={config.color} className="shrink-0" />
+          <span className="text-xs font-semibold text-white/95">
             {config.label}
           </span>
         </div>

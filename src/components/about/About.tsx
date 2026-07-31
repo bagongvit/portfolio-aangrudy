@@ -1,5 +1,7 @@
 import Container from "@/components/layout/Container";
 import AboutContent from "./AboutContent";
+import AboutCodeWindow from "./AboutCodeWindow";
+import AboutHighlights from "./AboutHighlights";
 import Stats from "./Stats";
 
 export default function About() {
@@ -13,7 +15,7 @@ export default function About() {
           style={{ animationDelay: "-4s" }}
         />
 
-        {/* Grid pattern dengan radial mask, supaya tidak terlihat "terpotong" tegas di tepi */}
+        {/* Grid pattern dengan radial mask */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -27,7 +29,7 @@ export default function About() {
           }}
         />
 
-        {/* Noise texture tipis, mengurangi kesan gradient flat (konsisten dengan AuroraBackground) */}
+        {/* Noise texture */}
         <div
           className="absolute inset-0 opacity-[0.025] mix-blend-overlay"
           style={{
@@ -36,26 +38,38 @@ export default function About() {
           }}
         />
 
-        {/* Fade lembut di batas atas & bawah section, supaya transisi antar section mulus */}
+        {/* Fade gradient borders */}
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-slate-950 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
       </div>
 
       <Container>
-        {/* Section label kecil di atas, menandai transisi dari Hero ke About */}
+        {/* Section divider label */}
         <div className="mb-16 flex items-center gap-4 lg:mb-20">
           <span className="font-mono text-sm text-blue-400/70">01</span>
           <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
-          <span className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Introduction
+          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-zinc-500">
+            About &amp; Philosophy
           </span>
         </div>
 
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          {/* Content */}
-          <AboutContent />
+        {/* Balanced Bento Grid Layout */}
+        <div className="space-y-8">
+          {/* Row 1: Bio Narrative & Interactive IDE Window */}
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-stretch">
+            <div className="lg:col-span-7">
+              <AboutContent />
+            </div>
 
-          {/* Stats */}
+            <div className="lg:col-span-5">
+              <AboutCodeWindow />
+            </div>
+          </div>
+
+          {/* Row 2: 3 Bento Core Highlights */}
+          <AboutHighlights />
+
+          {/* Row 3: 3 Horizontal Stat Cards */}
           <Stats />
         </div>
       </Container>

@@ -196,7 +196,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {/* Features */}
                 <h3 className="flex items-center gap-2 text-lg font-semibold text-white">
                   <Sparkles size={16} className="text-blue-400" />
-                  Fitur Utama
+                  Key Features
                 </h3>
                 <ul className="mt-4 space-y-3">
                   {project.features.map((item) => (
@@ -215,7 +215,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <>
                     <h3 className="mt-8 flex items-center gap-2 text-lg font-semibold text-white">
                       <Wrench size={16} className="text-blue-400" />
-                      Tantangan & Solusi
+                      Challenges &amp; Solutions
                     </h3>
                     <p className="mt-4 text-sm leading-7 text-zinc-400">
                       {project.challenges}
@@ -241,7 +241,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-medium text-white transition-all duration-300 hover:border-blue-500/50 hover:bg-white/5 active:scale-[0.98] sm:flex-none"
                   >
                     <FaGithub size={16} />
-                    Lihat Kode
+                    View Code
                   </Link>
                 </div>
               </div>

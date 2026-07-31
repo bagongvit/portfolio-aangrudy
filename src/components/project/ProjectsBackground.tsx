@@ -54,7 +54,7 @@ export default function ProjectsBackground() {
       />
 
       {/* Faint grid for ground-plane depth cue behind the floating shapes */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black_40%,transparent_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_45%_35%_at_50%_0%,black_30%,transparent_100%)]" />
 
       {/* Fine grain noise overlay for texture (static) */}
       <div

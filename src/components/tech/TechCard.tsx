@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import MotionWrapper from "@/components/hero/MotionWrapper";
 import TiltCard from "@/components/ui/TiltCard";
 import Spotlight from "@/components/ui/Spotlight";
@@ -233,18 +234,16 @@ text-zinc-400
                   </div>
 
                   <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                    <div
-                      className="
-h-full
-rounded-full
-bg-gradient-to-r
-from-cyan-400
-via-blue-500
-to-violet-500
-transition-all
-duration-700
-"
-                      style={{ width: `${experience}%` }}
+                    <motion.div
+                      className="h-full rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500"
+                      initial={{ width: "0%" }}
+                      whileInView={{ width: `${experience}%` }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 1.2,
+                        ease: [0.25, 1, 0.5, 1],
+                        delay: 0.2 + index * 0.05,
+                      }}
                     />
                   </div>
                 </div>

@@ -88,7 +88,7 @@ export default function Logo({ isScrolled = false }: LogoProps) {
         >
           Aang Rudy
         </p>
-        <p className="text-xs text-zinc-500">Full Stack Developer</p>
+        <p className="text-xs text-zinc-500">Software Engineer</p>
       </div>
     </Link>
   );

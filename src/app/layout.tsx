@@ -21,14 +21,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://aangrudy.my.id"),
   title: {
-    default: "Aang Rudy | Full Stack Developer",
+    default: "Aang Rudy | Software Engineer",
     template: "%s | Aang Rudy",
   },
   description:
-    "Portfolio Aang Rudy, Full Stack Developer yang membangun aplikasi modern menggunakan Laravel, React, Next.js, Vue.js, dan teknologi web modern.",
+    "Portfolio Aang Rudy, Software Engineer yang membangun aplikasi modern menggunakan Laravel, React, Next.js, Vue.js, dan teknologi web modern.",
   keywords: [
     "Aang Rudy",
-    "Full Stack Developer",
+    "Software Engineer",
+    "Full Stack Engineer",
     "Laravel",
     "React",
     "Next.js",
@@ -53,9 +54,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Aang Rudy | Full Stack Developer",
+    title: "Aang Rudy | Software Engineer",
     description:
-      "Portfolio Aang Rudy - Full Stack Developer yang membangun aplikasi modern menggunakan Laravel, React, Next.js, dan teknologi web modern.",
+      "Portfolio Aang Rudy - Software Engineer yang membangun aplikasi modern menggunakan Laravel, React, Next.js, dan teknologi web modern.",
     type: "website",
     locale: "id_ID",
     url: "https://aangrudy.my.id",
@@ -65,14 +66,14 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Aang Rudy - Full Stack Developer",
+        alt: "Aang Rudy - Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aang Rudy | Full Stack Developer",
-    description: "Portfolio Aang Rudy - Full Stack Developer.",
+    title: "Aang Rudy | Software Engineer",
+    description: "Portfolio Aang Rudy - Software Engineer.",
     images: ["/og-image.png"],
   },
 };

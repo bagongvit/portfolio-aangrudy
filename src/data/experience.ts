@@ -13,7 +13,7 @@ export const experienceData: Experience[] = [
   {
     id: 1,
     company: "Ayokulakan",
-    position: "Full Stack Developer",
+    position: "Software Engineer",
     period: "2025 - Present",
     location: "Indonesia",
     description:
@@ -29,7 +29,7 @@ export const experienceData: Experience[] = [
   {
     id: 2,
     company: "Personal Projects",
-    position: "Full Stack Developer",
+    position: "Software Engineer",
     period: "2024 - Present",
     location: "Remote",
     description:

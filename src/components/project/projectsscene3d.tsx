@@ -16,44 +16,45 @@ interface ShapeConfig {
   floatIntensity: number;
 }
 
-// Scattered at different depths (z) so they read with real parallax,
-// colors pulled from the site's existing blue/violet/cyan accent palette.
+// Tucked into the corners/edges and pushed back in depth so they read as
+// quiet background decoration instead of competing with the heading/cards.
+// Colors pulled from the site's existing blue/violet/cyan accent palette.
 const SHAPES: ShapeConfig[] = [
   {
-    position: [-4.2, 1.6, -2],
-    scale: 1.1,
+    position: [-6.5, 2.6, -6],
+    scale: 0.55,
     color: "#3b82f6",
     geometry: "icosahedron",
     speed: 0.15,
     floatIntensity: 1.2,
   },
   {
-    position: [4.3, -1.1, -3.2],
-    scale: 1.5,
+    position: [6.8, -2.2, -7],
+    scale: 0.7,
     color: "#8b5cf6",
     geometry: "octahedron",
     speed: 0.1,
     floatIntensity: 1.6,
   },
   {
-    position: [2.6, 2.1, -1],
-    scale: 0.7,
+    position: [6.2, 3.1, -6.5],
+    scale: 0.4,
     color: "#22d3ee",
     geometry: "box",
     speed: 0.2,
     floatIntensity: 1,
   },
   {
-    position: [-3.2, -2.2, -1.6],
-    scale: 0.95,
+    position: [-6.8, -3, -6.2],
+    scale: 0.5,
     color: "#3b82f6",
     geometry: "torus",
     speed: 0.12,
     floatIntensity: 1.4,
   },
   {
-    position: [0.6, -2.7, -2.6],
-    scale: 0.6,
+    position: [0.5, 3.6, -8],
+    scale: 0.35,
     color: "#8b5cf6",
     geometry: "icosahedron",
     speed: 0.25,
@@ -113,7 +114,7 @@ function Shape({
     >
       <mesh ref={meshRef} position={position} scale={scale}>
         {geometryNode}
-        <meshBasicMaterial color={color} wireframe transparent opacity={0.4} />
+        <meshBasicMaterial color={color} wireframe transparent opacity={0.18} />
       </mesh>
     </Float>
   );
@@ -126,7 +127,7 @@ export default function ProjectsScene3D() {
     <Canvas
       dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: true }}
-      camera={{ position: [0, 0, 8], fov: 45 }}
+      camera={{ position: [0, 0, 11], fov: 38 }}
       style={{ pointerEvents: "none" }}
     >
       <Suspense fallback={null}>

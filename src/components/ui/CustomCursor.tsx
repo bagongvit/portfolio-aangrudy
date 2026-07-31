@@ -70,28 +70,38 @@ export default function CustomCursor() {
     };
   }, []);
 
-  if (!isVisible) return null;
-
   return (
     <>
-      {/* Inner dot — mengikuti cepat */}
+      {/* Glow Aura Ring */}
       <div
-        ref={dotRef}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-blue-400 mix-blend-difference transition-[width,height] duration-200 ease-out will-change-transform"
+        ref={ringRef}
+        className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full bg-blue-500/20 blur-md transition-[width,height,opacity] duration-300 ease-out will-change-transform"
         style={{
-          width: isHovering ? 10 : 8,
-          height: isHovering ? 10 : 8,
+          width: isHovering ? 64 : 40,
+          height: isHovering ? 64 : 40,
+          opacity: isHovering ? 0.8 : 0.4,
         }}
       />
 
-      {/* Outer ring — trailing, sedikit di belakang dot */}
+      {/* Inner dot */}
+      <div
+        ref={dotRef}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 shadow-[0_0_12px_rgba(96,165,250,0.8)] transition-[width,height] duration-200 ease-out will-change-transform"
+        style={{
+          width: isHovering ? 12 : 8,
+          height: isHovering ? 12 : 8,
+        }}
+      />
+
+      {/* Outer ring */}
       <div
         ref={ringRef}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full border border-blue-400/50 transition-[width,height,opacity] duration-300 ease-out will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full border border-blue-400/60 transition-[width,height,opacity,border-color] duration-300 ease-out will-change-transform"
         style={{
           width: isHovering ? 56 : 32,
           height: isHovering ? 56 : 32,
           opacity: isHovering ? 1 : 0.6,
+          borderColor: isHovering ? "rgba(168,85,247,0.8)" : "rgba(96,165,250,0.5)",
         }}
       />
     </>

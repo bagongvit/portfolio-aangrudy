@@ -34,14 +34,12 @@ export default function MotionWrapper({
       className={className}
       initial={
         shouldReduceMotion
-          ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)" }
+          ? { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }
           : {
               opacity: 0,
               x: offset.x * scale,
               y: offset.y * scale,
-              // Blur ringan di awal — memberi efek "fokus masuk" saat
-              // konten muncul, dikombinasikan dengan fade + slide yang
-              // sudah ada sebelumnya
+              scale: 0.96,
               filter: "blur(8px)",
             }
       }
@@ -49,16 +47,18 @@ export default function MotionWrapper({
         opacity: 1,
         x: 0,
         y: 0,
+        scale: 1,
         filter: "blur(0px)",
       }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={
         shouldReduceMotion
           ? { duration: 0 }
           : {
-              duration: 0.7,
+              type: "spring",
+              stiffness: 90,
+              damping: 18,
               delay,
-              ease: [0.21, 0.47, 0.32, 0.98],
             }
       }
     >

@@ -15,16 +15,15 @@ export default function Projects() {
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-blue-400">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
-              Proyek
+              Projects
             </span>
 
             <h2 className="mt-6 bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-5xl">
-              Proyek Unggulan
+              Featured Projects
             </h2>
 
             <p className="mt-6 text-balance text-lg leading-8 text-zinc-400">
-              Beberapa proyek yang merepresentasikan pengalaman saya dalam
-              membangun aplikasi dunia nyata.
+              A curated collection of real-world applications showcasing my expertise in full stack software engineering and modern web architecture.
             </p>
           </div>
 
@@ -33,9 +32,9 @@ export default function Projects() {
               {String(total).padStart(2, "0")}
             </span>
             <span className="leading-tight">
-              proyek
+              Projects
               <br />
-              dipamerkan
+              Showcased
             </span>
           </div>
         </div>
