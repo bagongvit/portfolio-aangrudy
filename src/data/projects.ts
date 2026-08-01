@@ -49,7 +49,6 @@ export const projectData: Project[] = [
     image: "/images/projects/taskflow-1.png",
     screenshots: [
       "/images/projects/taskflow-1.png",
-      "/images/projects/taskflow-2.png",
     ],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Zustand"],
     features: [
@@ -74,7 +73,6 @@ export const projectData: Project[] = [
     image: "/images/projects/devblog-1.png",
     screenshots: [
       "/images/projects/devblog-1.png",
-      "/images/projects/devblog-2.png",
     ],
     technologies: ["Laravel", "Next.js", "TypeScript", "PostgreSQL"],
     features: [

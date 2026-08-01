@@ -6,18 +6,28 @@ export function useActiveSection() {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
+    const handleScrollTop = () => {
+      if (window.scrollY < 100) {
+        setActiveSection("");
+      }
+    };
 
+    window.addEventListener("scroll", handleScrollTop, { passive: true });
+
+    const sections = document.querySelectorAll("section[id]");
     const visibilityMap = new Map<string, number>();
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (window.scrollY < 100) {
+          setActiveSection("");
+          return;
+        }
+
         entries.forEach((entry) => {
           visibilityMap.set(entry.target.id, entry.intersectionRatio);
         });
 
-        // Pick the section with the highest visible ratio,
-        // instead of just the last one that fired.
         const mostVisible = [...visibilityMap.entries()]
           .filter(([, ratio]) => ratio > 0)
           .sort((a, b) => b[1] - a[1])[0];
@@ -34,7 +44,10 @@ export function useActiveSection() {
 
     sections.forEach((section) => observer.observe(section));
 
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", handleScrollTop);
+      observer.disconnect();
+    };
   }, []);
 
   return activeSection;

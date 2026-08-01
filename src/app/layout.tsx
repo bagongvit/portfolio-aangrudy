@@ -78,6 +78,46 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://aangrudy.my.id/#person",
+      name: "Aang Rudy",
+      url: "https://aangrudy.my.id",
+      image: "https://aangrudy.my.id/images/profile.png",
+      jobTitle: "Software Engineer",
+      description:
+        "Software Engineer yang membangun aplikasi web modern menggunakan Laravel, React, Next.js, Vue.js, dan TypeScript.",
+      sameAs: [
+        "https://github.com/bagongvit",
+        "https://linkedin.com/in/bagongvit",
+      ],
+      knowsAbout: [
+        "Laravel",
+        "Next.js",
+        "React",
+        "Vue.js",
+        "TypeScript",
+        "Software Engineering",
+        "REST APIs",
+        "Web Development",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://aangrudy.my.id/#website",
+      url: "https://aangrudy.my.id",
+      name: "Aang Rudy Portfolio",
+      publisher: {
+        "@id": "https://aangrudy.my.id/#person",
+      },
+      inLanguage: "id-ID",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,6 +128,12 @@ export default function RootLayout({
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className="min-h-screen bg-[#09090B] text-white antialiased"
         suppressHydrationWarning

@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden py-24 lg:flex lg:min-h-screen lg:items-center"
+      className="relative overflow-hidden pt-28 pb-12 lg:flex lg:h-screen lg:max-h-screen lg:py-0 lg:items-center"
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">

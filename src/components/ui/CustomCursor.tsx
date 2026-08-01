@@ -10,8 +10,9 @@ function lerp(start: number, end: number, factor: number) {
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const auraRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
@@ -20,9 +21,12 @@ export default function CustomCursor() {
     ).matches;
     if (isTouchDevice || prefersReducedMotion) return;
 
-    setIsVisible(true);
+    queueMicrotask(() => setMounted(true));
+  }, []);
 
-    // Posisi target (mengikuti mouse langsung) vs posisi tampil (yang di-lerp/smooth)
+  useEffect(() => {
+    if (!mounted) return;
+
     const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const dotPos = { ...target };
     const ringPos = { ...target };
@@ -45,8 +49,6 @@ export default function CustomCursor() {
 
     let rafId: number;
     const animate = () => {
-      // Dot mengikuti cepat (factor besar), ring sedikit "ngekor" di belakang
-      // (factor lebih kecil) — inilah yang menciptakan efek trailing premium
       dotPos.x = lerp(dotPos.x, target.x, 0.35);
       dotPos.y = lerp(dotPos.y, target.y, 0.35);
       ringPos.x = lerp(ringPos.x, target.x, 0.15);
@@ -58,6 +60,9 @@ export default function CustomCursor() {
       if (ringRef.current) {
         ringRef.current.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%, -50%)`;
       }
+      if (auraRef.current) {
+        auraRef.current.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%, -50%)`;
+      }
 
       rafId = requestAnimationFrame(animate);
     };
@@ -68,13 +73,15 @@ export default function CustomCursor() {
       window.removeEventListener("mouseover", handleMouseOver);
       cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) return null;
 
   return (
     <>
       {/* Glow Aura Ring */}
       <div
-        ref={ringRef}
+        ref={auraRef}
         className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full bg-blue-500/20 blur-md transition-[width,height,opacity] duration-300 ease-out will-change-transform"
         style={{
           width: isHovering ? 64 : 40,

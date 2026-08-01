@@ -32,7 +32,7 @@ export default function HeroSocial() {
 
   return (
     <MotionWrapper delay={0.3}>
-      <div className="mt-10 flex items-center gap-4">
+      <div className="mt-4 flex items-center gap-3">
         {socials.map(({ href, icon: Icon, label, external, color }) => (
           <Link
             key={label}
@@ -42,7 +42,7 @@ export default function HeroSocial() {
             title={label}
             className={`
               group relative rounded-xl border border-white/10
-              bg-white/[0.02] p-3 text-zinc-300 backdrop-blur-sm
+              bg-white/[0.02] p-2.5 text-zinc-300 backdrop-blur-sm
               transition-all duration-300
               hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20
               ${color}

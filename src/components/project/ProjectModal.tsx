@@ -24,10 +24,12 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeImage, setActiveImage] = useState(0);
+  const [prevProject, setPrevProject] = useState(project);
 
-  useEffect(() => {
+  if (project !== prevProject) {
+    setPrevProject(project);
     setActiveImage(0);
-  }, [project]);
+  }
 
   const images = project?.screenshots?.length
     ? project.screenshots

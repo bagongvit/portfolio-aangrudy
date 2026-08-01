@@ -7,16 +7,16 @@ import MagneticButton from "@/components/ui/MagneticButton";
 export default function HeroButtons() {
   return (
     <MotionWrapper delay={0.2}>
-      <div className="mt-10 flex flex-wrap gap-4">
-        <MagneticButton>
+      <div className="mt-5 flex flex-wrap gap-3">
+        <MagneticButton className="w-full sm:w-auto">
           <Link
             href="#projects"
             className="
-            group relative inline-flex items-center gap-2 overflow-hidden
-            rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3
-            font-semibold text-white shadow-lg shadow-blue-500/20
+            group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden
+            rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 px-5 py-2.5
+            text-sm font-semibold text-white shadow-lg shadow-blue-500/20
             transition-all duration-300 hover:-translate-y-0.5
-            hover:shadow-xl hover:shadow-blue-500/30
+            hover:shadow-xl hover:shadow-blue-500/30 sm:w-auto
           "
           >
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -28,15 +28,15 @@ export default function HeroButtons() {
           </Link>
         </MagneticButton>
 
-        <MagneticButton strength={0.3}>
+        <MagneticButton strength={0.3} className="w-full sm:w-auto">
           <a
             href={profile.resume}
             target="_blank"
             className="
-            group inline-flex items-center gap-2 rounded-xl border
-            border-white/10 bg-white/[0.02] px-6 py-3 font-semibold text-white
+            group inline-flex w-full items-center justify-center gap-2 rounded-xl border
+            border-white/10 bg-white/[0.02] px-5 py-2.5 text-sm font-semibold text-white
             backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5
-            hover:border-blue-500/50 hover:bg-white/5
+            hover:border-blue-500/50 hover:bg-white/5 sm:w-auto
           "
           >
             <Download

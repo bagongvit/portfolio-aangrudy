@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Line, Html, Environment, Sphere } from "@react-three/drei";
+import { Line, Environment, Sphere } from "@react-three/drei";
 import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 import {
@@ -178,27 +178,6 @@ function TechSatellite({ config }: { config: TechConfig }) {
           <meshBasicMaterial color={config.color} transparent opacity={0.15} />
         </mesh>
       </group>
-
-      <Html
-        center
-        occlude={false}
-        style={{ pointerEvents: "none" }}
-        sprite
-      >
-        <div
-          className="flex items-center gap-2 whitespace-nowrap rounded-xl border border-white/10 px-3 py-1.5 backdrop-blur-md shadow-lg transition-all duration-300"
-          style={{
-            backgroundColor: "rgba(15, 23, 42, 0.85)",
-            borderColor: `${config.color}55`,
-            boxShadow: `0 0 16px ${config.color}30, inset 0 0 8px ${config.color}10`,
-          }}
-        >
-          <config.icon size={15} color={config.color} className="shrink-0" />
-          <span className="text-xs font-semibold text-white/95">
-            {config.label}
-          </span>
-        </div>
-      </Html>
     </group>
   );
 }
@@ -267,17 +246,22 @@ function DecorativeRing({
   );
 }
 
+function pseudoRandom(seed: number) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
 function AmbientParticles() {
   const groupRef = useRef<THREE.Group>(null);
   const particles = useMemo(
     () =>
-      Array.from({ length: 18 }, () => ({
-        x: (Math.random() - 0.5) * 6,
-        y: (Math.random() - 0.5) * 5,
-        z: (Math.random() - 0.5) * 3 - 1,
-        speed: 0.3 + Math.random() * 0.4,
-        offset: Math.random() * Math.PI * 2,
-        size: 0.015 + Math.random() * 0.02,
+      Array.from({ length: 18 }, (_, i) => ({
+        x: (pseudoRandom(i * 6 + 1) - 0.5) * 6,
+        y: (pseudoRandom(i * 6 + 2) - 0.5) * 5,
+        z: (pseudoRandom(i * 6 + 3) - 0.5) * 3 - 1,
+        speed: 0.3 + pseudoRandom(i * 6 + 4) * 0.4,
+        offset: pseudoRandom(i * 6 + 5) * Math.PI * 2,
+        size: 0.015 + pseudoRandom(i * 6 + 6) * 0.02,
       })),
     [],
   );

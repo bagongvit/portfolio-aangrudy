@@ -1,39 +1,27 @@
 import Container from "@/components/layout/Container";
 import ContactForm from "./ContactForm";
 import ContactInfo from "./ContactInfo";
+import ContactScene3D from "./ContactScene3D";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden py-24">
-      {/* Background Glow */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="animate-mesh absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-500/10 blur-3xl" />
-        <div
-          className="animate-mesh absolute right-0 bottom-0 h-80 w-80 rounded-full bg-violet-500/10 blur-3xl"
-          style={{ animationDelay: "-4s" }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-      </div>
+    <section id="contact" className="relative overflow-hidden py-28">
+      {/* 3D Animated Interactive Background */}
+      <ContactScene3D />
 
       <Container>
         {/* Section Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <span className="inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-blue-400">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-blue-400 shadow-lg shadow-blue-500/10 backdrop-blur-md">
+            <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
             Contact
           </span>
 
-          <h2 className="mt-6 bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
+          <h2 className="mt-6 bg-gradient-to-b from-white via-zinc-200 to-zinc-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl">
             Let&apos;s Build Something Amazing Together
           </h2>
 
-          <p className="mt-6 text-balance text-lg leading-8 text-zinc-400">
+          <p className="mt-6 text-balance text-lg leading-8 text-zinc-300">
             Whether you have a project, a freelance opportunity, or just want to
             say hello, I&apos;d love to hear from you. Let&apos;s create
             something impactful together.
@@ -42,11 +30,13 @@ export default function Contact() {
 
         {/* Content */}
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 backdrop-blur-sm transition-colors duration-300 hover:border-white/20">
+          <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/60 p-8 backdrop-blur-xl transition-all duration-500 hover:border-blue-500/40 hover:shadow-2xl hover:shadow-blue-500/10">
+            <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-blue-500/10 blur-2xl transition-all duration-500 group-hover:bg-blue-500/20" />
             <ContactInfo />
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 backdrop-blur-sm transition-colors duration-300 hover:border-white/20">
+          <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/60 p-8 backdrop-blur-xl transition-all duration-500 hover:border-violet-500/40 hover:shadow-2xl hover:shadow-violet-500/10">
+            <div className="absolute -left-20 -bottom-20 h-40 w-40 rounded-full bg-violet-500/10 blur-2xl transition-all duration-500 group-hover:bg-violet-500/20" />
             <ContactForm />
           </div>
         </div>

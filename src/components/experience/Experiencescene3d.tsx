@@ -1,6 +1,6 @@
 "use client";
 
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
@@ -9,12 +9,19 @@ const NODE_COUNT = 34;
 const STAR_COUNT = 320;
 const CONNECTION_DISTANCE = 2.2;
 
+function pseudoRandom(seed: number) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
+    if (mq.matches) {
+      queueMicrotask(() => setReduced(true));
+    }
 
     const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
     mq.addEventListener("change", handler);
@@ -26,9 +33,8 @@ function useReducedMotion() {
 }
 
 function MouseParallax() {
-  const { camera, mouse } = useThree();
-
-  useFrame(() => {
+  useFrame((state) => {
+    const { camera, mouse } = state;
     camera.position.x = THREE.MathUtils.lerp(
       camera.position.x,
       mouse.x * 0.4,
@@ -50,9 +56,9 @@ function AmbientStars() {
     const arr = new Float32Array(STAR_COUNT * 3);
 
     for (let i = 0; i < STAR_COUNT; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 24;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 14;
-      arr[i * 3 + 2] = -Math.random() * 16;
+      arr[i * 3] = (pseudoRandom(i * 3 + 1) - 0.5) * 24;
+      arr[i * 3 + 1] = (pseudoRandom(i * 3 + 2) - 0.5) * 14;
+      arr[i * 3 + 2] = -pseudoRandom(i * 3 + 3) * 16;
     }
 
     return arr;
@@ -98,15 +104,15 @@ function PremiumNetwork({ reduced }: { reduced: boolean }) {
   const nodesRef = useRef<THREE.Points>(null);
 
   const nodes = useMemo<NodeData[]>(() => {
-    return Array.from({ length: NODE_COUNT }, () => ({
+    return Array.from({ length: NODE_COUNT }, (_, i) => ({
       base: new THREE.Vector3(
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 6,
-        -1 - Math.random() * 4,
+        (pseudoRandom(i * 5 + 100) - 0.5) * 10,
+        (pseudoRandom(i * 5 + 101) - 0.5) * 6,
+        -1 - pseudoRandom(i * 5 + 102) * 4,
       ),
-      phase: Math.random() * Math.PI * 2,
-      speed: 0.4 + Math.random() * 0.8,
-      amp: 0.15 + Math.random() * 0.25,
+      phase: pseudoRandom(i * 5 + 103) * Math.PI * 2,
+      speed: 0.4 + pseudoRandom(i * 5 + 104) * 0.8,
+      amp: 0.15 + pseudoRandom(i * 5 + 105) * 0.25,
     }));
   }, []);
 
@@ -236,12 +242,10 @@ function PremiumNetwork({ reduced }: { reduced: boolean }) {
 }
 
 function CameraDrift() {
-  const { camera } = useThree();
-
   useFrame((state) => {
     const t = state.clock.elapsedTime;
 
-    camera.position.z = 8 + Math.sin(t * 0.2) * 0.15;
+    state.camera.position.z = 8 + Math.sin(t * 0.2) * 0.15;
   });
 
   return null;

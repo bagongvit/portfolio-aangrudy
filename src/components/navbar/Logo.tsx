@@ -9,6 +9,11 @@ interface LogoProps {
 }
 
 const PARTICLE_COLORS = ["#3b82f6", "#8b5cf6", "#22d3ee", "#ffffff"];
+const PARTICLES = Array.from({ length: 16 }, (_, i) => ({
+  angle: (i / 16) * 360,
+  distance: 55 + ((i * 17) % 35),
+  color: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
+}));
 
 export default function Logo({ isScrolled = false }: LogoProps) {
   const clickCount = useRef(0);
@@ -56,25 +61,20 @@ export default function Logo({ isScrolled = false }: LogoProps) {
             key={burstKey}
             className="pointer-events-none absolute left-1/2 top-1/2 z-50"
           >
-            {Array.from({ length: 16 }).map((_, i) => {
-              const angle = (i / 16) * 360;
-              const distance = 55 + Math.random() * 35;
-              const color = PARTICLE_COLORS[i % PARTICLE_COLORS.length];
-              return (
-                <span
-                  key={i}
-                  className="absolute h-1.5 w-1.5 rounded-full"
-                  style={
-                    {
-                      backgroundColor: color,
-                      animation: "particle-burst 0.8s ease-out forwards",
-                      "--angle": `${angle}deg`,
-                      "--distance": `${distance}px`,
-                    } as React.CSSProperties
-                  }
-                />
-              );
-            })}
+            {PARTICLES.map((particle, i) => (
+              <span
+                key={i}
+                className="absolute h-1.5 w-1.5 rounded-full"
+                style={
+                  {
+                    backgroundColor: particle.color,
+                    animation: "particle-burst 0.8s ease-out forwards",
+                    "--angle": `${particle.angle}deg`,
+                    "--distance": `${particle.distance}px`,
+                  } as React.CSSProperties
+                }
+              />
+            ))}
           </div>
         )}
       </div>

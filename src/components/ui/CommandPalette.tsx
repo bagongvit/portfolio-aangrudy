@@ -24,7 +24,7 @@ interface CommandItem {
   id: string;
   title: string;
   category: "Navigation" | "Actions" | "Socials";
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   action: () => void;
   shortcut?: string;
 }
@@ -74,14 +74,14 @@ export default function CommandPalette({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, closePalette, externalIsOpen, externalOnClose]);
 
-  const copyEmail = () => {
+  const copyEmail = useCallback(() => {
     navigator.clipboard.writeText(profile.email);
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
       closePalette();
     }, 1200);
-  };
+  }, [closePalette]);
 
   const items: CommandItem[] = useMemo(
     () => [
@@ -187,7 +187,7 @@ export default function CommandPalette({
         },
       },
     ],
-    [copied, closePalette]
+    [copied, copyEmail, closePalette]
   );
 
   const filteredItems = useMemo(() => {
